@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>梁兆瑞 | 简历</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="前端,工作,简历" />
+    <link rel="shortcut icon" href="./static/avatar.jpg" />
+    <link rel="stylesheet" href="./static/normalize.css" />
+    <link rel="stylesheet" href="./static/font-awesome.min.css" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <aside>
+        <div class="title fantasy card">
+          <img :src="$options.title.url" />
+          <div class="description">
+            <span>{{ $options.title.name }}</span>
+            <span>"{{ $options.title.description }}"</span>
+          </div>
+        </div>
+        <ul class="basic-info card">
+          <li>
+            <dt>Basic info. 基本信息</dt>
+            <dd v-for="item in $options.info">
+              <fa-icon :icon="item.icon"></fa-icon> {{ item.name }}
+            </dd>
+          </li>
+          <li>
+            <dt>Links. 相关链接</dt>
+            <dd v-for="item in $options.links">
+              <fa-icon :icon="item.icon"></fa-icon>
+              {{ item.name }}
+              <a :href="item.url" target="_blank">{{ item.url }}</a>
+            </dd>
+          </li>
+          <li>
+            <dt>Contact. 联系方式</dt>
+            <dd v-for="item in $options.contact">
+              <fa-icon :icon="item.icon"></fa-icon>{{ item.name }}
+            </dd>
+          </li>
+          <li>
+            <dt>Application. 应聘岗位</dt>
+            <dd>{{ $options.application }}</dd>
+          </li>
+          <li class="skill">
+            <dt>Stack. 技术栈</dt>
+            <dd v-for="item in $options.skill">
+              <div class="skill-name">{{ item.name }}</div>
+              <div class="skill-bar-wrap">
+                <div class="skill-bar" :style="{width: item.level * 10 + '%'}"></div>
+              </div>
+            </dd>
+          </li>
+          <li class="hobby">
+            <dt>Hobby. 爱好</dt>
+            <dl>
+              <div v-for="item in $options.hobby">
+                <a :href="item.url" target="_blank">
+                  <img :src="item.icon" /><br />{{ item.name }}
+                </a>
+              </div>
+            </dl>
+          </li>
+        </ul>
+        <div class="side-bottom">
+          <p v-for="(item, index) in $options.closing" :key="index">
+            {{ item }}
+          </p>
+        </div>
+      </aside>
+      <main>
+        <ul class="main-info">
+          <li>
+            <dt><fa-icon icon="bookmark"></fa-icon> EXPERIENCE. 工作经验</dt>
+            <template v-for="item in $options.experience">
+              <h3>{{ item.company }}</h3>
+              <ul class="exp">
+                <li v-for="item2 in item.exp">
+                  <div class="circle"></div>
+                  <h4>{{ item2.name }}</h4>
+                  <p class="stack"><fa-icon icon="code"></fa-icon> {{ item2.stack }}</p>
+                  <p v-for="item3 in item2.description">{{ item3 }}</p>
+                </li>
+              </ul>
+            </template>
+          </li>
+          <li>
+            <dt><fa-icon icon="bookmark"></fa-icon> PRODUCTION. 个人作品</dt>
+            <ul class="exp">
+              <li v-for="item in $options.production">
+                <div class="circle"></div>
+                <h4>
+                  <template v-if="item.names" v-for="item2 in item.names">
+                    {{ item2.name }}
+                    <a
+                      v-for="item3 in item2.link"
+                      :href="item3.url"
+                      target="_blank"
+                      ><fa-icon icon="link"></fa-icon>{{ item3.name + " " }}</a
+                    >
+                  </template>
+                  <template v-if="!item.names">
+                    {{ item.name }}
+                    <a
+                      v-for="item2 in item.link"
+                      :href="item2.url"
+                      target="_blank"
+                      ><fa-icon icon="link"></fa-icon>{{ item2.name + " " }}</a
+                    >
+                  </template>
+                </h4>
+                <p v-for="item3 in item.description">{{ item3 }}</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <dt><fa-icon icon="bookmark"></fa-icon> SELF-EVALUATION. 自我评价</dt>
+            <ul class="exp">
+              <li>
+                <div class="circle"></div>
+                <p
+                  v-for="(item, index) in $options.evaluation"
+                  :style="{paddingTop: index ? '0' : '25px'}"
+                >
+                  {{ item }}
+                </p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script>
+
+      var FaIcon = Vue.extend({
+      })
+      
+      Vue.component('fa-icon', {
+        template: `<i :class="'icon-' + icon" style="margin-right: 5px;"></i>`,
+        props: ['icon']
+      })
+
+      const app = new Vue({
+        el: '#app',
+        title: {
+          name: '梁兆瑞',
+          url: './static/avatar.jpg',
+          description: 'Keep and carry on'
+        },
+        info: [
+          { name: '1995 / 01', icon: 'user' },
+          { name: '江南大学 / 2015', icon: 'book' },
+          // { name: '河南省洛阳市', icon: 'home' }
+        ],
+        links: [
+          {
+            name: '',
+            url: 'https://github.com/liangzr',
+            icon: 'github'
+          },
+          {
+            name: '',
+            url: 'https://blog.liangzr.tech',
+            icon: 'edit'
+          },
+        ],
+        contact: [
+          { name: 'liangzr@outlook.com', icon: 'envelope', type: 'email' },
+          { name: '1768-2300-321', icon: 'phone', type: 'phone' },
+          { name: 'jory.liang', icon: 'instagram' },
+        ],
+        application: '前端开发工程师',
+        skill: [
+          { name: 'JavaScript', level: 9 },
+          { name: 'HTML', level: 7 },
+          { name: 'CSS', level: 7 },
+          { name: 'React', level: 8 },
+          { name: 'Vue', level: 6 },
+          { name: 'Webpack', level: 7 },
+          { name: 'TypeScript', level: 7 },
+          { name: 'Node.js', level: 6 },
+          { name: 'Egg.js', level: 7 },
+          { name: 'jQuery', level: 6 },
+          { name: 'Bootstrap', level: 7 },
+          { name: 'Rollup', level: 4 },
+          { name: 'Less / Sass', level: 7 },
+          { name: 'MySQL', level: 5 },
+          { name: 'Docker', level: 6 },
+          { name: 'Linux', level: 6 },
+          { name: 'Python', level: 5 },
+          { name: 'Android', level: 5 },
+          { name: 'Vim', level: 7 },
+          { name: 'PhotoShop', level: 5 }
+        ],
+        hobby: [
+          { name: '摄影', icon: './static/icon/photography.svg', url: 'https://www.instagram.com/jory.liang/' },
+          { name: '动漫', icon: './static/icon/animation.svg' },
+          { name: '代码', icon: './static/icon/code.svg' }
+        ],
+        experience: [
+          {
+            company: '杭州一骑轻尘信息技术有限公司（2017.6 - 2019.4）',
+            exp: [
+              {
+                name: '表单设计器',
+                stack: 'react + sematic-ui',
+                description: [
+                  '独立开发的流程引擎表单的设计器，可以拖拽添加控件以及修改属性配置表单模板。',
+                  '通过子母表单的设计，可以一次配置多个表单，大大地提高了配置效率。通过对表单的性能优化，使其在大表单场景下的渲染效率提高了 5 倍以上。'
+                ]
+              },
+              {
+                name: '页面渲染服务',
+                stack: 'egg.js + nunjunks + redis + mysql',
+                description: [
+                  '独立开发的用于渲染公司 SPA 应用的服务，提供统一认证登陆、动态渲染、动态接口转发等功能。',
+                  'SPA 应用接入发布系统后，可直接由此服务渲染页面，自带统一认证和统一菜单，简化了开发流程和上手体验。',
+                ]
+              },
+              {
+                name: '待办中心',
+                stack: 'react + express + ejs + ant-design',
+                description: [
+                  '流程引擎表单的前端，动态渲染表单项。',
+                  '添加控件联动功能，使控件能够在渲染时相互联动，定义了 2 个触发和 5 个响应动作组合使用。添加特殊控件分支框，让表单随着流程节点实现多分支。'
+                ]
+              },
+              {
+                name: '订单宝 / 库融宝',
+                stack: 'react + dva + ant-design',
+                description: [
+                  '为客户提供的金融下单应用，可以进行下单、选车、展期、还款等功能。',
+                  '独力 lint 整个项目 ，改动 200 多个文件，重构不合理的代码以及潜在的十多处 bug，并配置提交钩子，增强了代码的健壮性。'
+                ]
+              },
+              {
+                name: '资金工厂',
+                stack: 'vue + element-ui',
+                description: [
+                  '金融系统资产管理后台，优化了环境配置、项目结构、路由分割等，后提取作为金融的默认开发模板。'
+                ]
+              },
+            ]
+          },
+          {
+            company: '上海网达软件股份有限公司（2016.10 - 2017.5）',
+            exp: [
+              {
+                name: '咪咕爱看',
+                stack: 'android + wrp',
+                description: [
+                  '中国移动旗下的视频软件，可以观看剧集、综艺等视频，还可以收藏、搜索或下载。',
+                  '重构整个项目的登录模块，解决了长久以来频繁复现的 session 失效、心跳包异常等问题。'
+                ]
+              },
+              {
+                name: '咪咕听书',
+                stack: 'android + wrp',
+                description: [
+                  '中国移动旗下的听书软件，可以播放、订阅、下载曲目。',
+                  '编写了一套专用的语法支持插件，可以支持语法高亮、代码补全等功能，在文档缺失的情况下，极大地简化了上手难度。'
+                ]
+              },
+            ]
+          },
+        ],
+        production: [
+          {
+            name: 'vuex-map-model',
+            link: [
+              {
+                url: 'https://github.com/liangzr/vuex-map-model',
+                name: '源码'
+              }
+            ],
+            description: [
+              '从实际项目中提炼出的一个 vuex 插件。',
+              '用于自动为 v-model 生成 getter 与 setter 函数，贯彻 vuex 的单向数据流思想。'
+            ]
+          },
+          {
+            name: 'WDMLMarkup',
+            link: [
+              {
+                url: 'https://github.com/liangzr/WDMLMarkup',
+                name: '源码'
+              }
+            ],
+            description: [
+              '支持 WonderTek WRP 项目的语法插件。',
+              '基于 Sublime Text 实现了语法高亮、代码自动补全、代码片段等功能。'
+            ]
+          }
+          
+        ],
+        evaluation: [
+          '在校时实践成果突出，具有较强的主观能动性和丰富的实践经验；',
+          '主动申报过两个院级项目，提高自己的动手实践能力，另有大创项目发表了论文和专利；带队参加江苏省电子设计大赛并获一等奖，加强了心理素质和抗压能力；',
+          '对新事物充满好奇，乐于追溯原理，与朋友分享探讨；在兴趣圈子内非常活跃，易于相处。',
+        ],
+        closing: [
+          '爱折腾、爱生活、"硬"核开发',
+          '大学时深入两年嵌入式开发，熟悉硬件电源设计与电路控制，毕业后做过 Android 开发。一直以来学习都是兴趣使然，享受 coding 带来的思维碰撞',
+          '近五年的职业规划中专注于前端开发方向，期待遇到更优秀的团队，在工作和成长中贯彻自我价值',
+        ]
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,281 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #e0e0e0;
+  font-family: "Helvetica Neue", Helvetica, "Lucida Grande", Arial, "Hiragino Sans GB", 微软雅黑, "WenQuanYi Micro Hei", STHeiti, SimSun, sans-serif;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+#app {
+  max-width: 1260px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+aside {
+  width: 380px;
+  padding: 25px;
+  background: #333;
+  color: #fff;
+  line-height: 1.5;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+aside a {
+  color: #fff;
+}
+
+.title {
+  padding: 16px 0;
+  color: white;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  height: 80px;
+  padding: 0 !important;
+  border-radius: 40px 7px 7px 40px !important;
+}
+
+.title img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin: 0;
+}
+
+.title .description {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 16px;
+}
+
+.title .description span:nth-of-type(1) {
+  font-size: 26px;
+  margin-bottom: 5px;
+}
+
+.title .description span:nth-of-type(2) {
+  font-size: 12px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+aside li {
+  padding-top: 16px;
+}
+
+aside dt {
+  font-size: 18px;
+  color: #43a047;
+  line-height: 36px;
+}
+
+aside dd {
+  font-size: 14px;
+  line-height: 25px;
+  margin-left: 15px;
+}
+
+.skill {
+  position: relative;
+}
+
+.skill-name {
+  width: 100px;
+  font-size: 12px;
+  display: inline-block;
+  position: relative;
+  left: 0px;
+  top: -3px;
+}
+
+.skill-bar-wrap {
+  height: 12px;
+  width: 150px;
+  background: #00796b;
+  display: inline-block;
+  border-radius: 20px;
+}
+
+.skill-bar {
+  height: 12px;
+  background: #fff;
+  border-radius: 20px 0 0 20px;
+}
+
+.side-bottom {
+  width: 100%;
+  padding-bottom: 25px;
+  text-indent: 2em;
+  font-size: 13px;
+  line-height: 22px;
+  color: #fff;
+}
+
+main {
+  flex: 1;
+  padding: 15px 20px 0;
+  background: #f0f2f1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+main a {
+  color: #4db6ac;
+}
+
+.main-info>li {
+  padding-top: 10px;
+}
+
+.main-info dt {
+  font-size: 26px;
+  color: #00796b;
+  line-height: 30px;
+  border-bottom: 1px solid #00796b;
+  margin: 0 0 15px -5px;
+}
+
+.main-info dd {
+  font-size: 17px;
+  line-height: 27px;
+  color: #616161;
+}
+
+.main-info span {
+  color: #000;
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 20px;
+  color: #004d40;
+  margin: 0 0 15px 5px;
+}
+
+h4 {
+  line-height: 26px;
+  font-size: 16px;
+  color: #000;
+  position: relative;
+  bottom: 3px;
+  margin-top: 12px;
+}
+
+h4 a,
+h5 a {
+  font-size: 14px;
+}
+
+h5 {
+  clear: both;
+  font-size: 18px;
+  color: #000;
+  line-height: 25px;
+}
+
+.circle {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  background: #00796b;
+  float: left;
+  position: absolute;
+  left: -26px;
+  top: 5px;
+}
+
+.exp {
+  border-left: 2px solid #00796b;
+  margin-left: 15px;
+}
+
+
+.exp p {
+  font-size: 14px;
+  color: #333;
+  line-height: 21px;
+  padding: 2px 0;
+}
+
+.exp p.stack {
+  font-family: monospace;
+  color: #994333;
+}
+
+.exp>li {
+  position: relative;
+  top: -5px;
+  margin: 0 0 8px 20px;
+}
+
+.exp img {
+  width: 150px;
+}
+
+.exp ul>li {
+  margin: 0 0 12px 0;
+}
+
+.efe .task4img img {
+  height: 73px;
+  width: inherit;
+}
+
+.hobby dl {
+  margin-top: 3px;
+  display: flex;
+}
+
+.hobby dl div {
+  text-align: center;
+  flex: 1;
+}
+
+.hobby dl div img {
+  width: 40px;
+  height: 40px;
+}
+
+
+.fantasy {
+  background-image: url(./static/background.svg), linear-gradient(to right, #80DEEA 200px, #C5E1A5);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed, scroll;
+}
+
+.card {
+  border-radius: 7px;
+  padding: 16px;
+}
