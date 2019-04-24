@@ -214,6 +214,19 @@ h5 {
   top: 5px;
 }
 
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  text-align: center;
+  bottom: 16px;
+}
+
+footer a {
+  color: lightslategray;
+  text-decoration: none;
+}
+
 .exp {
   border-left: 2px solid #00796b;
   margin-left: 15px;
