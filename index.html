@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <title>梁兆瑞 | 简历</title>
@@ -19,64 +18,60 @@
           <img :src="$options.title.url" />
           <div class="description">
             <span>{{ $options.title.name }}</span>
-            <span>"{{ $options.title.description }}"</span>
+            <span>{{ $options.title.description }}</span>
           </div>
         </div>
         <ul class="basic-info card">
           <li>
-            <dt>Basic info. 基本信息</dt>
-            <dd v-for="item in $options.info">
-              <fa-icon :icon="item.icon"></fa-icon> {{ item.name }}
-            </dd>
+            <dt>Basic Info</dt>
+            <dd v-for="item in $options.info"><fa-icon :icon="item.icon"></fa-icon> {{ item.name }}</dd>
           </li>
-          <li>
+          <!-- <li>
             <dt>Links. 相关链接</dt>
             <dd v-for="item in $options.links">
               <fa-icon :icon="item.icon"></fa-icon>
               {{ item.name }}
               <a :href="item.url" target="_blank">{{ item.url }}</a>
             </dd>
-          </li>
+          </li> -->
           <li>
-            <dt>Contact. 联系方式</dt>
-            <dd v-for="item in $options.contact">
-              <fa-icon :icon="item.icon"></fa-icon>{{ item.name }}
-            </dd>
-          </li>
-          <li>
-            <dt>Application. 应聘岗位</dt>
-            <dd>{{ $options.application }}</dd>
-          </li>
-          <li class="skill">
-            <dt>Stack. 技术栈</dt>
-            <dd v-for="item in $options.skill">
-              <div class="skill-name">{{ item.name }}</div>
-              <div class="skill-bar-wrap">
-                <div class="skill-bar" :style="{width: item.level * 10 + '%'}"></div>
-              </div>
-            </dd>
-          </li>
-          <li class="hobby">
-            <dt>Hobby. 爱好</dt>
             <dl>
-              <div v-for="item in $options.hobby">
-                <a :href="item.url" target="_blank">
-                  <img :src="item.icon" /><br />{{ item.name }}
-                </a>
-              </div>
+              <dt>Contact</dt>
+              <dd v-for="item in $options.contact"><fa-icon :icon="item.icon"></fa-icon>{{ item.name }}</dd>
             </dl>
           </li>
+          <li>
+            <dl>
+              <dt>Application</dt>
+              <dd>{{ $options.application }}</dd>
+            </dl>
+          </li>
+          <li class="skill">
+            <dl>
+              <dt>Stack</dt>
+              <dd v-for="item in $options.skill">
+                <div class="skill-name">{{ item.name }}</div>
+                <div class="skill-bar-wrap">
+                  <div class="skill-bar" :style="{width: item.level * 10 + '%'}"></div>
+                </div>
+              </dd>
+            </dl>
+          </li>
+          <!-- <li class="hobby">
+            <dt>Hobby. 爱好</dt>
+            <div v-for="item in $options.hobby">
+              <a :href="item.url" target="_blank"> <img :src="item.icon" /><br />{{ item.name }} </a>
+            </div>
+          </li> -->
         </ul>
-        <div class="side-bottom">
-          <p v-for="(item, index) in $options.closing" :key="index">
-            {{ item }}
-          </p>
-        </div>
+        <!-- <div class="side-bottom">
+          <p v-for="(item, index) in $options.closing" :key="index">{{ item }}</p>
+        </div> -->
       </aside>
       <main>
         <ul class="main-info">
           <li>
-            <dt><fa-icon icon="bookmark"></fa-icon> EXPERIENCE. 工作经验</dt>
+            <dt><fa-icon icon="bookmark"></fa-icon> EXPERIENCE</dt>
             <template v-for="item in $options.experience">
               <h3>{{ item.company }}</h3>
               <ul class="exp">
@@ -90,26 +85,20 @@
             </template>
           </li>
           <li>
-            <dt><fa-icon icon="bookmark"></fa-icon> PRODUCTION. 个人作品</dt>
+            <dt><fa-icon icon="bookmark"></fa-icon> PRODUCTION</dt>
             <ul class="exp">
               <li v-for="item in $options.production">
                 <div class="circle"></div>
                 <h4>
                   <template v-if="item.names" v-for="item2 in item.names">
-                    {{ item2.name }}
-                    <a
-                      v-for="item3 in item2.link"
-                      :href="item3.url"
-                      target="_blank"
+                    {{ item2.name }}{{ item2.platform }}
+                    <a v-for="item3 in item2.link" :href="item3.url" target="_blank"
                       ><fa-icon icon="link"></fa-icon>{{ item3.name + " " }}</a
                     >
                   </template>
                   <template v-if="!item.names">
-                    {{ item.name }}
-                    <a
-                      v-for="item2 in item.link"
-                      :href="item2.url"
-                      target="_blank"
+                    {{ item.name }} <span class="platform">{{ item.platform }}</span>
+                    <a v-for="item2 in item.link" :href="item2.url" target="_blank"
                       ><fa-icon icon="link"></fa-icon>{{ item2.name + " " }}</a
                     >
                   </template>
@@ -118,20 +107,17 @@
               </li>
             </ul>
           </li>
-          <li>
+          <!-- <li>
             <dt><fa-icon icon="bookmark"></fa-icon> SELF-EVALUATION. 自我评价</dt>
             <ul class="exp">
               <li>
                 <div class="circle"></div>
-                <p
-                  v-for="(item, index) in $options.evaluation"
-                  :style="{paddingTop: index ? '0' : '25px'}"
-                >
+                <p v-for="(item, index) in $options.evaluation" :style="{paddingTop: index ? '0' : '25px'}">
                   {{ item }}
                 </p>
               </li>
             </ul>
-          </li>
+          </li> -->
         </ul>
         <footer>
           <address>
@@ -142,13 +128,11 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
     <script>
+      var FaIcon = Vue.extend({})
 
-      var FaIcon = Vue.extend({
-      })
-      
       Vue.component('fa-icon', {
         template: `<i :class="'icon-' + icon" style="margin-right: 5px;"></i>`,
-        props: ['icon']
+        props: ['icon'],
       })
 
       const app = new Vue({
@@ -156,23 +140,18 @@
         title: {
           name: '梁兆瑞',
           url: './static/avatar.jpg',
-          description: 'Keep and carry on'
+          description: 'stay young',
         },
         info: [
           { name: '1995 / 01', icon: 'user' },
           { name: '江南大学 / 2015', icon: 'book' },
-          // { name: '河南省洛阳市', icon: 'home' }
+          { name: 'https://github.com/liangzr', icon: 'github' },
         ],
         links: [
           {
             name: '',
             url: 'https://github.com/liangzr',
-            icon: 'github'
-          },
-          {
-            name: '',
-            url: 'https://blog.liangzr.tech',
-            icon: 'edit'
+            icon: 'github',
           },
         ],
         contact: [
@@ -183,32 +162,61 @@
         application: '前端开发工程师',
         skill: [
           { name: 'JavaScript', level: 9 },
-          { name: 'HTML', level: 7 },
-          { name: 'CSS', level: 7 },
-          { name: 'React', level: 9 },
+          { name: 'TypeScript', level: 8 },
+          { name: 'React', level: 8 },
+          { name: 'HTML', level: 8 },
+          { name: 'CSS', level: 8 },
           { name: 'Vue', level: 6 },
           { name: 'Webpack', level: 7 },
-          { name: 'TypeScript', level: 7 },
           { name: 'Node.js', level: 6 },
-          { name: 'Egg.js', level: 7 },
-          { name: 'jQuery', level: 6 },
-          { name: 'Bootstrap', level: 7 },
+          { name: 'Egg.js', level: 8 },
           { name: 'Less / Sass', level: 7 },
           { name: 'MySQL', level: 5 },
           { name: 'Redis', level: 6 },
           { name: 'Docker', level: 6 },
+          { name: 'Shell', level: 4 },
           { name: 'Linux', level: 6 },
           { name: 'Python', level: 5 },
           { name: 'Android', level: 5 },
           { name: 'Vim', level: 7 },
-          { name: 'PhotoShop', level: 5 }
+          { name: 'PhotoShop', level: 5 },
+          { name: 'Sketch', level: 6 },
         ],
         hobby: [
           { name: '摄影', icon: './static/icon/photography.svg', url: 'https://www.instagram.com/jory.liang/' },
           { name: '动漫', icon: './static/icon/animation.svg', url: 'https://space.bilibili.com/2624440/bangumi' },
-          { name: '代码', icon: './static/icon/code.svg', url: 'https://github.com/liangzr' }
+          { name: '代码', icon: './static/icon/code.svg', url: 'https://github.com/liangzr' },
         ],
         experience: [
+          {
+            company: '阿里巴巴（2019.5 - 2021.3）',
+            exp: [
+              {
+                name: '本地生活应用研发平台',
+                stack: 'midway + react + mysql + RxJS + TypeScript',
+                description: [
+                  '阿里巴巴本地生活的全新应用发布管理平台。',
+                  '设计应用、选取技术栈，完成接口、参数校验、安全、类型系统、配置化、目录结构、数据库等基础架构。',
+                  '基于 RxJS 设计了以数据为中心的简易状态管理，结合 TypeScript 提升开发体验和状态安全。',
+                ],
+              },
+              {
+                name: 'Kobe B 端解决方案',
+                stack: 'kobe + webpack + redux',
+                description: [
+                  '基于 Kobe 多页应用技术栈构建了本地生活 B 端解决方案。',
+                  '重新设计了渲染逻辑，在应用的 setup、render、error 状态插入对应的统一解决方案或页面实现，统一了页面数据初始化和错误处理。',
+                ],
+              },
+              {
+                name: '本地生活网络请求库',
+                stack: 'axios + 中间件 + TypeScript',
+                description: [
+                  '基本中间件重新设计了网络请求库，解耦了网络请求库中监控埋点、错误处理、网关转换等多个模块',
+                ],
+              },
+            ],
+          },
           {
             company: '杭州一骑轻尘信息技术有限公司（2017.6 - 2019.4）',
             exp: [
@@ -217,88 +225,110 @@
                 stack: 'react + sematic-ui',
                 description: [
                   '独立开发流程引擎表单设计器，实现控件编辑、多节点表单配置、控件联动配置等功能。',
-                  '设计子母表单一次配置多个节点，维护效率成数倍提升。优化表单渲染性能，大表单场景下效率提升 5 倍以上。'
-                ]
+                  '设计子母表单一次配置多个节点，维护效率成数倍提升。优化表单渲染性能，大表单场景下效率提升 5 倍以上。',
+                ],
               },
               {
                 name: '页面渲染服务',
                 stack: 'egg.js + nunjunks + redis + mysql',
                 description: [
-                  '独立开发 SPA 应用渲染服务，实现统一认证登陆、动态渲染、动态接口转发等功能。配合应用发布系统，应用无需关注页面渲染逻辑，零配置使用。',
-                ]
+                  '独立开发 SPA 应用渲染服务，实现统一认证登陆、动态渲染、动态接口转发等功能。配合应用发布系统，应用无需关注页面渲染逻辑，零配置使用。',
+                ],
               },
               {
                 name: '待办中心',
                 stack: 'react + express + ejs + ant-design',
                 description: [
-                  '流程引擎表单的前端，实现控件联动功能，提供 10 多个组合联动逻辑。实现表单分支功能，表单跟随并行的流程节点渲染不同分支。'
-                ]
+                  '流程引擎表单的前端，实现控件联动功能，提供 10 多个组合联动逻辑。实现表单分支功能，表单跟随并行的流程节点渲染不同分支。',
+                ],
               },
-              {
+              /*{
                 name: '订单宝 / 库融宝',
                 stack: 'react + dva + ant-design',
                 description: [
                   '汽车金融下单应用，实现了展期还款、物流优化等功能。',
-                  '独力 lint 整个项目，增强代码健壮性 ，改动 200 多个文件，顺手重构不合理代码以及潜在的十多处 bug，并配置提交钩子。'
-                ]
+                  '独力 lint 整个项目，增强代码健壮性 ，改动 200 多个文件，顺手重构不合理代码以及潜在的十多处 bug，并配置提交钩子。',
+                ],
               },
               {
                 name: '资金工厂',
                 stack: 'vue + element-ui',
                 description: [
-                  '金融系统资产管理后台，实现多环境配置、约定项目结构，实现路由分割等，后提取作为金融团队默认开发模板。'
-                ]
-              },
-            ]
-          },
-          {
-            company: '上海网达软件股份有限公司（2016.10 - 2017.5）',
-            exp: [
-              {
-                name: '咪咕爱看',
-                stack: 'android + wrp',
-                description: [
-                  '中国移动旗下视频软件，重构整个项目登录模块，彻底解决长久以来频繁复现的 session 失效、心跳包异常等问题。'
-                ]
-              },
-              {
-                name: '咪咕听书',
-                stack: 'android + wrp',
-                description: [
-                  '中国移动旗下听书软件，为其自有 WRP 引擎开发专用语法支持插件，支持语法高亮、代码补全、代码片段功能。'
-                ]
-              },
-            ]
+                  '金融系统资产管理后台，实现多环境配置、约定项目结构，实现路由分割等，后提取作为金融团队默认开发模板。',
+                ],
+              },*/
+            ],
           },
         ],
         production: [
+          {
+            name: 'custom-uri',
+            platform: 'H5 工具',
+            description: [
+              '统一 URI 解构工具。',
+              '可以方便地递归解构 URI 参数并在内层直接编辑、增删，解决了长期以来测试和运营手动拼接经过 3-6 次编码的参数字符串的问题，在阿里和字节内都备受好评',
+            ],
+          },
+          {
+            name: '花盆 flower-pot',
+            platform: 'Sketch 插件',
+            description: [
+              'sketch 切片上传插件。',
+              '可以一键将当前用户编辑好的切片选区一健上传至内部图片管理平台，并返回上传后的链接，解决了切图、保存、在线平台选文件、上传、获取链接的繁琐步骤。',
+            ],
+          },
+          {
+            name: 'Share Code',
+            platform: 'vscode 插件',
+            description: [
+              '可一键打开当前文件所在行或选择片段，在远程仓库中对应文件的链接，支持从 git 状态中获取对应远程仓库、分支及所在行数或选取行',
+            ],
+          },
+          {
+            name: ' 枝丫 twigs',
+            platform: 'Chrome 插件',
+            description: [
+              'chrome 树型语雀文档导航插件。',
+              '可实现授权登录并获取用户文档树、收藏、最近浏览等功能',
+              '通过 hack 页面结构并使用 phtml 重新渲染部分内容实现不刷新即可来回切换页面的效果',
+            ],
+          },
+          {
+            name: 'koubei go',
+            platform: 'Alfred 插件',
+            description: [
+              '提供给支付宝、口碑、饿了么的 scheme 模拟器跳转插件。基于 alfred workflow、applescript 技术栈',
+              '可以方便地解析各容器的跳转参数，并可选择在不同的容器中打开此链接',
+              '提供了历史和页面管理功能，方便快速打开常用链接',
+            ],
+          },
           {
             name: 'vuex-map-model',
             link: [
               {
                 url: 'https://github.com/liangzr/vuex-map-model',
-                name: '源码'
-              }
+                name: '源码',
+              },
             ],
             description: [
               '实际项目中提炼的 vuex 插件。',
-              '自动为 v-model 生成 getter 与 setter 函数，贯彻 vuex 单向数据流思想。'
-            ]
+              '自动为 v-model 生成 getter 与 setter 函数，贯彻 vuex 单向数据流思想。',
+            ],
           },
           {
             name: 'WDMLMarkup',
+            platform: 'Sublime Text 插件',
             link: [
               {
                 url: 'https://github.com/liangzr/WDMLMarkup',
-                name: '源码'
-              }
+                name: '源码',
+              },
             ],
             description: [
               '支持 WonderTek WRP 项目的语法插件。',
-              '基于 Sublime Text 实现语法高亮、代码补全、代码片段功能。'
-            ]
-          }
-          
+              '基于 Sublime Text 实现语法高亮、代码补全、代码片段功能。',
+            ],
+          },
         ],
         evaluation: [
           '在校时实践成果突出，具有较强的主观能动性和丰富的实践经验；',
@@ -309,8 +339,8 @@
           '爱折腾、爱生活、"硬"核开发',
           '大学深入两年嵌入式开发，熟悉硬件电源设计与电路控制，毕业后做过 Android 开发。一直以来学习都是兴趣使然，享受 coding 带来的思维碰撞',
           '近五年的职业规划中专注于前端开发方向，期待遇到更优秀的团队，在工作和成长中贯彻自我价值',
-        ]
-      });
+        ],
+      })
     </script>
   </body>
 </html>
